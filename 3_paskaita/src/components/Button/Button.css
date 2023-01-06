@@ -1,0 +1,12 @@
+.styled-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: tomato;
+  color: white;
+  font-size: 14px;
+}
+
+.styled-button:hover {
+  filter: brightness(85%);
+  cursor: pointer;
+}
