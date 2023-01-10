@@ -6,13 +6,25 @@ import "./CustomButton.css";
 // get hex of blue color
 // style every button to match design
 
-const CustomButton = ({ variant, children }) => {
+const CustomButton = ({ variant, onClick, children }) => {
   if (variant === "text") {
-    return <button className="button text">{children}</button>;
+    return (
+      <button className="button text" onClick={onClick}>
+        {children}
+      </button>
+    );
   } else if (variant === "outlined") {
-    return <button className="button outlined">{children}</button>;
+    return (
+      <button className="button outlined" onClick={onClick}>
+        {children}
+      </button>
+    );
   } else {
-    return <button className="button contained">{children}</button>;
+    return (
+      <button className="button contained" onClick={onClick}>
+        {children}
+      </button>
+    );
   }
 };
 
