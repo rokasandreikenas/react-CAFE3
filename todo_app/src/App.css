@@ -14,3 +14,22 @@
 .delete-button:hover {
   filter: brightness(0.8);
 }
+
+.calculator {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.calculator button {
+  width: 25%;
+}
+
+.calculator button[value="+"],
+.calculator button[value="-"],
+.calculator button[value="*"],
+.calculator button[value="/"] {
+  width: 50%;
+}
