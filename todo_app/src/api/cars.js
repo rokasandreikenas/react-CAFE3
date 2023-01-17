@@ -10,6 +10,3 @@ export const getCars = () => {
 export const getCar = (id) => {
   return cars.find((car) => car.id === id);
 };
-
-// getCar(1); //  { id: 1, title: "BMW", subtitle: "Very good car" }
-// getCars(); // [...]
