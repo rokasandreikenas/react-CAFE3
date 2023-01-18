@@ -7,6 +7,8 @@ import SelectInput from "./SelectInput";
 import HomePage from "./pages/HomePage";
 import ContactsPage from "./pages/ContactsPage";
 import CarPage from "./pages/CarPage";
+import { STYLED_COMPONENTS } from "./consts/routes";
+import StyledComponents from "./pages/StyledComponents";
 
 const App = () => {
   return (
@@ -19,6 +21,7 @@ const App = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/contacts" element={<ContactsPage />} />
       <Route path="/cars/:id" element={<CarPage />} />
+      <Route path={STYLED_COMPONENTS} element={<StyledComponents />} />
     </Routes>
   );
 };
