@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Topbar from "../components/Topbar";
 import { getCars } from "../api/cars";
 import { Link } from "react-router-dom";
 import { weatherAPI } from "../consts/api";
 import WeatherCard from "../components/WeatherCard/WeatherCard";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { getMainColor } from "../utils/color";
 
 const HomePage = () => {
   const cars = getCars();
   const [weather, setWeather] = useState(undefined);
+  const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     fetch(weatherAPI)
@@ -19,7 +22,9 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{ backgroundColor: getMainColor(darkMode), minHeight: "100vh" }}
+    >
       <Topbar />
       <div
         style={{
