@@ -19,7 +19,7 @@ const ProductProvider = ({ children }) => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("https://testapi.io/api/lukasnvc/resource/NewEsho")
+      .get("https://testapi.io/api/lukasnvc/resource/NewEshop")
       .then((response) => {
         const transformedData = transformData(response.data.data);
         setProducts(transformedData);
