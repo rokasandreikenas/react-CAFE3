@@ -4,11 +4,13 @@
 // 3. Register page
 // 4. AuthContext susitvarkom, kad saugotu useri
 import { useContext } from "react";
-import { ProductContext } from "../../contexts/ProductContext";
 import styled from "styled-components";
+import { ProductContext } from "../../contexts/ProductContext";
 import { euroSymbol } from "../../consts/currency";
 import { screenSize } from "../../consts/mediaQueries";
 import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
+import { LOGIN_PATH } from "../../routes/const";
 
 const Cart = () => {
   const { products } = useContext(ProductContext);
@@ -37,7 +39,9 @@ const Cart = () => {
         ))}
       </CartContainer>
       <ButtonContainer>
-        <Button>Checkout</Button>
+        <Button as={Link} to={LOGIN_PATH}>
+          Checkout
+        </Button>
       </ButtonContainer>
     </Container>
   );

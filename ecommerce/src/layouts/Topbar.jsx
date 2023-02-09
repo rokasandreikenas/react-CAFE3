@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { lightBorderColor } from "../consts/colors";
 import SearchBar from "../components/SearchBar/SearchBar";
-import { HOME_PATH } from "../routes/const";
+import { HOME_PATH, CART_PATH } from "../routes/const";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Topbar = () => {
   return (
@@ -11,12 +12,23 @@ const Topbar = () => {
       <Logo as={Link} to={HOME_PATH}>
         POHSE
       </Logo>
-      <SearchBar />
+      <ItemContainer>
+        <SearchBar />
+        <Link to={CART_PATH}>
+          <FaShoppingCart fontSize={20} />
+        </Link>
+      </ItemContainer>
     </Container>
   );
 };
 
 export default Topbar;
+
+const ItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
 
 const Container = styled.div`
   padding: 6px 30px;
