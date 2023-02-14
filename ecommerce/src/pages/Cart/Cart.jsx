@@ -1,19 +1,16 @@
 import { useContext } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { euroSymbol } from "../../consts/currency";
 import { screenSize } from "../../consts/mediaQueries";
 import Button from "../../components/Button/Button";
-import { Link } from "react-router-dom";
 import { LOGIN_PATH, CHECKOUT_PATH } from "../../routes/const";
 import { UserContext } from "../../contexts/UserContext";
-import { useProducts } from "../../hooks/products";
+import { CartContext } from "../../contexts/CartContext";
 
 const Cart = () => {
-  const { data } = useProducts();
-  const products = data || [];
+  const { cartItems } = useContext(CartContext);
   const { isLoggedIn } = useContext(UserContext);
-
-  const cartProducts = products.slice(0, 2);
 
   return (
     <Container>
@@ -22,7 +19,7 @@ const Cart = () => {
         <p>Items are reserved for 30 minutes</p>
       </Header>
       <CartContainer>
-        {cartProducts.map((product) => (
+        {cartItems.map((product) => (
           <CartItem key={product.id}>
             <img src={product.picUrl[0]} alt={product.name} />
             <div>
@@ -33,6 +30,7 @@ const Cart = () => {
               <p>{product.name}</p>
               <CartItemColor>{product.color}</CartItemColor>
             </div>
+            <ItemQuantity>x{product.quantity}</ItemQuantity>
           </CartItem>
         ))}
       </CartContainer>
@@ -87,6 +85,13 @@ const CartItemPrice = styled.p`
 const CartItemColor = styled.p`
   margin-top: 8px;
   font-weight: 300;
+`;
+
+const ItemQuantity = styled.div`
+  flex: 1;
+  align-self: center;
+  margin-right: 32px;
+  text-align: right;
 `;
 
 const ButtonContainer = styled.div`
