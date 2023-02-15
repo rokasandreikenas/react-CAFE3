@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { euroSymbol } from "../../consts/currency";
 import { screenSize } from "../../consts/mediaQueries";
 import Button from "../../components/Button/Button";
 import { LOGIN_PATH, CHECKOUT_PATH } from "../../routes/const";
 import { UserContext } from "../../contexts/UserContext";
 import { CartContext } from "../../contexts/CartContext";
+import CartItem from "./CartItem";
 
 const Cart = () => {
   const { cartItems } = useContext(CartContext);
@@ -20,18 +20,7 @@ const Cart = () => {
       </Header>
       <CartContainer>
         {cartItems.map((product) => (
-          <CartItem key={product.id}>
-            <img src={product.picUrl[0]} alt={product.name} />
-            <div>
-              <CartItemPrice>
-                {euroSymbol}
-                {product.price}
-              </CartItemPrice>
-              <p>{product.name}</p>
-              <CartItemColor>{product.color}</CartItemColor>
-            </div>
-            <ItemQuantity>x{product.quantity}</ItemQuantity>
-          </CartItem>
+          <CartItem key={product.id} product={product} />
         ))}
       </CartContainer>
       <ButtonContainer>
@@ -63,35 +52,6 @@ const Header = styled.div`
 const CartContainer = styled.div`
   background-color: #ffffff;
   margin-bottom: 24px;
-`;
-
-const CartItem = styled.div`
-  display: flex;
-
-  img {
-    width: 120px;
-    margin-right: 8px;
-    object-fit: contain;
-  }
-`;
-
-const CartItemPrice = styled.p`
-  font-size: 20px;
-  font-weight: 700;
-  margin-top: 16px;
-  margin-bottom: 8px;
-`;
-
-const CartItemColor = styled.p`
-  margin-top: 8px;
-  font-weight: 300;
-`;
-
-const ItemQuantity = styled.div`
-  flex: 1;
-  align-self: center;
-  margin-right: 32px;
-  text-align: right;
 `;
 
 const ButtonContainer = styled.div`
