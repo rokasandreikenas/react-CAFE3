@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { lightBorderColor } from "../consts/colors";
-import SearchBar from "../components/SearchBar/SearchBar";
+import EnhancedSearchBar from "../components/SearchBar/EnhancedSearchBar";
 import { HOME_PATH, CART_PATH } from "../routes/const";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -13,7 +13,7 @@ const Topbar = () => {
         POHSE
       </Logo>
       <ItemContainer>
-        <SearchBar />
+        <EnhancedSearchBar />
         <Link to={CART_PATH}>
           <FaShoppingCart fontSize={20} />
         </Link>
