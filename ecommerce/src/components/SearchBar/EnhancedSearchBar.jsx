@@ -10,16 +10,19 @@ import { PRODUCT_PATH } from "../../routes/const";
 const EnhancedSearchBar = () => {
   const [search, setSearch] = useState("");
   const { data } = useProducts();
-  const products = (data || []).slice(0, 5);
+  const products = data || [];
 
-  const filteredItems = products.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredItems = products
+    .filter((product) =>
+      product.name.toLowerCase().includes(search.toLowerCase())
+    )
+    .slice(0, 4);
 
   return (
     <Popover
       isOpen={search}
       positions={["top", "bottom", "left", "right"]}
+      onClickOutside={() => setSearch("")}
       content={
         <Container>
           {filteredItems.length ? (

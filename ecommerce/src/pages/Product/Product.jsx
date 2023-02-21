@@ -7,6 +7,7 @@ import { lightBorderColor } from "../../consts/colors";
 import { euroSymbol } from "../../consts/currency";
 import Button from "../../components/Button/Button";
 import { CartContext } from "../../contexts/CartContext";
+import { toast } from "react-hot-toast";
 
 const Product = () => {
   const { productId } = useParams();
@@ -15,6 +16,11 @@ const Product = () => {
   const products = data || [];
 
   const product = products.find((product) => product.id === Number(productId));
+
+  const handleAddProduct = () => {
+    handleAddToCart(product);
+    toast.success("Added to cart");
+  };
 
   if (isLoading) {
     return <div>Kraunasi...</div>;
@@ -36,7 +42,7 @@ const Product = () => {
           {product.price}
         </Price>
         <Description>{product.description}</Description>
-        <FullWidthButton onClick={() => handleAddToCart(product)}>
+        <FullWidthButton onClick={handleAddProduct}>
           Add to Cart
         </FullWidthButton>
       </InfoSide>

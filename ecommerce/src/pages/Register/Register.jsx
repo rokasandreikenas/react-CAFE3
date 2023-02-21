@@ -7,6 +7,7 @@ import Button from "../../components/Button/Button";
 import { screenSize } from "../../consts/mediaQueries";
 import { LOGIN_PATH } from "../../routes/const";
 import { useCreateUser } from "../../hooks/user";
+import { toast } from "react-hot-toast";
 
 const validationSchema = Yup.object().shape({
   first_name: Yup.string().required("Required"),
@@ -29,6 +30,7 @@ const Register = () => {
     createUser(user)
       .then(() => {
         navigate(LOGIN_PATH);
+        toast.success("Successfully registered");
       })
       .catch((error) => {
         console.error("failed to create user: ", error);
