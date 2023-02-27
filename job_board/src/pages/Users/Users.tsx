@@ -8,7 +8,7 @@ const Users = () => {
 
   return (
     <Container>
-      {users.map((user: any) => (
+      {users.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}
     </Container>
