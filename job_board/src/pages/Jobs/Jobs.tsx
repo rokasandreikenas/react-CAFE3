@@ -1,57 +1,69 @@
-import { useState } from "react";
-import { useJobs } from "../../hooks/job";
-import Modal from "react-modal";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import { useJobs } from "../../hooks/jobsHooks";
+import JobCard from "./JobCard";
+import styled from "styled-components";
+import { useContext } from "react";
+import { borderRadius, darkGrey, mainBgColor } from "../../const/styles";
+import Button from "../../components/Button/Button";
+import StyledModal from "../../components/StyledModal/StyledModal";
+import { ModalContext } from "../../context/ModalContext";
+import Emoji from "../../components/Emoji/Emoji";
 
 const Jobs = () => {
+  const { openModal } = useContext(ModalContext);
   const { data: jobs, isLoading } = useJobs();
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
 
   if (isLoading) {
     return <div>Jobs are loading...</div>;
   }
 
   if (!isLoading && !jobs?.length) {
-    return <div>There are no jobs addedd yet.</div>;
+    return <div>There are no jobs added yet</div>;
   }
 
   return (
-    <div>
-      <button onClick={openModal}>Create job post</button>
-      {jobs.map((job) => (
-        <div key={job.id}>
-          {job.title} ${job.price}
-        </div>
-      ))}
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-      </Modal>
-    </div>
+    <Container>
+      <Title>
+        Vilnius Tech Jobs <Emoji symbol="🎉" />
+      </Title>
+      <TopContainer>
+        <Button greyVariant={true} onClick={openModal} title="post a job" />
+      </TopContainer>
+      <JobsContainer>
+        {jobs.map((job) => (
+          <JobCard key={job.id} job={job} />
+        ))}
+      </JobsContainer>
+      <StyledModal />
+    </Container>
   );
 };
 
 export default Jobs;
+
+const Container = styled.div`
+  background-color: ${mainBgColor};
+  margin: 50px 15vw;
+  padding: 32px;
+  border-radius: ${borderRadius};
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: ${darkGrey};
+`;
+
+const TopContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const JobsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+const Title = styled.h2`
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+`;

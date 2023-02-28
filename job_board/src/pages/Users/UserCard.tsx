@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { User } from "../../types/user";
-import { getFullName, showHiddenPassword } from "../../utils/string";
+import { getFullName, hidePassword } from "../../utils/string";
 
 interface UserCardProps {
   user: User;
@@ -11,7 +11,7 @@ const UserCard = ({ user }: UserCardProps) => {
     <Container>
       <Email>{user.email}</Email>
       <p>{getFullName(user.first_name, user.last_name)}</p>
-      <p>{showHiddenPassword(user.password)}</p>
+      <p>{hidePassword(user.password)}</p>
     </Container>
   );
 };
@@ -27,7 +27,6 @@ const Container = styled.div`
   border-radius: 4px;
   gap: 16px;
 `;
-
 const Email = styled.p`
   color: #4267b2;
   font-weight: 500;

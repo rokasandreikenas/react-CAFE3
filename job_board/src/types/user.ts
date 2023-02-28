@@ -8,4 +8,5 @@ export type NewUser = {
 };
 
 export type User = NewUser & EntityMeta;
+
 export type LoginUser = Omit<NewUser, "first_name" | "last_name">;
