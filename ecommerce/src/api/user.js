@@ -7,7 +7,9 @@ export const fetchUsers = () => {
 };
 
 export const createUser = (user) => {
-  return axios.post(USERS_API_URL, user).then((response) => response.data);
+  return axios
+    .post(USERS_API_URL, { ...user, role: "admin" })
+    .then((response) => response.data);
 };
 
 export const loginUser = async (loggingUser) => {
